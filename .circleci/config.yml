@@ -49,7 +49,7 @@ jobs:
     steps:
       - run:
           name: "print_username"
-          command: "echo $USERNAME"
+          command: "echo $MY_ENV_VAR"
  
           
 # Invoke jobs via workflows
