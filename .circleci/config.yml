@@ -6,9 +6,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run:
-          command: echo "hello world" > /tmp/dir/output.txt
+          command: echo "hello world" > /tmp/output.txt
       - persist_to_workspace:
-            root: /tmp/dir
+            root: /tmp/
             paths:
               - output.txt
         
@@ -17,9 +17,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - attach_workspace:
-          at: /tmp/dir
+          at: /tmp
       - run:
-          command: cat /tmp/dir/output.txt
+          command: cat /tmp/output.txt
 
 workflows:
   storage_task:
