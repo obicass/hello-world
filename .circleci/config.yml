@@ -9,7 +9,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp/dir
           paths:
-            - /tmp/dir/output.txt
+            - output.txt
       - run:
         name: "save_hello_world_output"
         command: echo "hello world" > output.txt
@@ -23,7 +23,7 @@ jobs:
           at: /tmp/dir
       - run:
           name: "print_output_file"
-          command: "cat output.txt"
+          command: cat /tmp/dir/output.txt
 
 
 workflows:
