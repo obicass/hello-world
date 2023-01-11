@@ -10,7 +10,7 @@ jobs:
           name: "save_hello_world_output"
           command: echo "hello world" > output.txt
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: /tmp/dir
           paths:
             - target/output.txt
             - build/*
@@ -24,9 +24,8 @@ jobs:
           name: "print_output_file"
           command: "cat output.txt"
       - attach_workspace:
-          at: /tmp/workspace
- 
-
+          at: /tmp/dir
+          
 workflows:
   storage_task:
     jobs:
