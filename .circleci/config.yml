@@ -6,8 +6,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - run:
-        name: "save_hello_world_output"
-        command: echo "hello world" > /tmp/dir/output.txt
+          command: echo "hello world" > /tmp/dir/output.txt
       - persist_to_workspace:
             root: /tmp/dir
             paths:
@@ -17,12 +16,10 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - run:
-          name: "print_output_file"
-          command: cat /tmp/dir/output.txt
       - attach_workspace:
           at: /tmp/dir
-
+      - run:
+          command: cat /tmp/dir/output.txt
 
 workflows:
   storage_task:
