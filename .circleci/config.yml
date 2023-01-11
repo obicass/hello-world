@@ -7,7 +7,7 @@ jobs:
     steps:
       - run: ech "hello_world"
       - run: 
-          echo "This is a success"
+          command: curl --data fail_tests.log http://example.com/error_logs
           when: on_fail
 
 
