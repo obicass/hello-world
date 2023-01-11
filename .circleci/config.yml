@@ -20,6 +20,25 @@ jobs:
           at: /tmp
       - run:
           command: cat /tmp/output.txt
+  print_job:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - print_pipeline_id:
+          to: "printer"
+
+
+
+commands:
+  print_pipeline_id:
+    description: "A very simple command for demonstration purposes"
+    parameters:
+      to:
+        type: string
+        default: "Hello World"
+    steps:
+      - run: echo << $CIRCLE_WORKFLOW_ID >>
+ 
 
 workflows:
   storage_task:
@@ -28,3 +47,4 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
+      - print_job
