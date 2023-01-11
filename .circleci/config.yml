@@ -1,33 +1,30 @@
 version: 2.1
 
-
 jobs:
   save_hello_world_output:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
+      - persist_to_workspace:
+          root: /tmp/dir
+          paths:
+            - /tmp/dir/output.txt
       - run:
-          name: "save_hello_world_output"
-          command: echo "hello world" > output.txt
-    - persist_to_workspace:
-        root: /tmp/dir
-        paths:
-          - target/output.txt
-          - build/*
-       
+        name: "save_hello_world_output"
+        command: echo "hello world" > output.txt
+        
   print_output_file:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
+      - attach_workspace:
+          at: /tmp/dir
       - run:
           name: "print_output_file"
           command: "cat output.txt"
-    - attach_workspace:
-        at: /tmp/dir
 
-          
 
 workflows:
   storage_task:
